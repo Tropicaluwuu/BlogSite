@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Add User</h2>
+
+  <form method="post">
+    <p>
+      <label>Username:</label>
+      <input type="text" name="username" required>
+    </p>
+    <p>
+      <label>Email:</label>
+      <input type="email" name="email">
+    </p>
+    <p>
+      <label>Bio:</label><br>
+      <textarea name="bio" rows="4" cols="40"></textarea>
+    </p>
+
+    <button type="submit">Save User</button>
+  </form>
+{% endblock %}

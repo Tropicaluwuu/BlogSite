@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <article>
+    <h2>{{ post.Title }}</h2>
+    <p>
+      <small>
+        by {{ post.author.Username if post.author else "Unknown" }}
+        • {{ post.CreatedAt.strftime('%Y-%m-%d %H:%M') if post.CreatedAt else '' }}
+      </small>
+    </p>
+
+    <p>{{ post.Content }}</p>
+
+    <p>
+      <strong>Likes:</strong> {{ post.likes | length }}
+    </p>
+
+    <p>
+      <a href="{{ url_for('edit_post', id=post.PostID) }}">Edit</a> |
+      <a href="{{ url_for('list_posts') }}">Back to all posts</a>
+    </p>
+  </article>
+
+  <section>
+    <h3>Like this post</h3>
+    <form method="get" action="">
+      <p>
+        <label>Like as:</label>
+        <select name="user_id" id="likeUserSelect">
+          {% for user in users %}
+            <option value="{{ user.UserID }}">{{ user.Username }}</option>
+          {% endfor %}
+        </select>
+      </p>
+      <button type="button"
+              onclick="likePost('{{ post.PostID }}')">
+        👍 Like
+      </button>
+    </form>
+  </section>
+
+  <hr>
+
+
+  <section>
+    <h3>Comments</h3>
+
+    {% if post.comments %}
+      <ul>
+        {% for comment in post.comments %}
+          <li>
+            <strong>{{ comment.author.Username if comment.author else "Anon" }}</strong>:
+            {{ comment.Content }}
+            <br>
+            <small>
+              {{ comment.CreatedAt.strftime('%Y-%m-%d %H:%M') if comment.CreatedAt else '' }}
+              •
+              <a href="{{ url_for('delete_comment', id=comment.CommentID) }}"
+                 onclick="return confirm('Delete this comment?');">
+                delete
+              </a>
+            </small>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p><em>No comments yet. Be the first!</em></p>
+    {% endif %}
+  </section>
+
+  <hr>
+
+  <!-- Add comment form -->
+  <section>
+    <h3>Add a Comment</h3>
+
+    <form method="post" action="{{ url_for('add_comment', post_id=post.PostID) }}">
+      <p>
+        <label>Comment:</label><br>
+        <textarea name="content" rows="4" style="width: 100%;" required></textarea>
+      </p>
+
+      <p>
+        <label>Commenting as:</label>
+        <select name="userid" required>
+          <option value="">-- select user --</option>
+          {% for user in users %}
+            <option value="{{ user.UserID }}">{{ user.Username }}</option>
+          {% endfor %}
+        </select>
+      </p>
+
+      <button type="submit">Post Comment</button>
+    </form>
+  </section>
+{% endblock %}

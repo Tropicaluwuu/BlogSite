@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Edit User</h2>
+
+  <form method="post">
+    <p>
+      <label>Username:</label>
+      <input type="text" name="username" value="{{ user.Username }}" required>
+    </p>
+    <p>
+      <label>Email:</label>
+      <input type="email" name="email" value="{{ user.Email or '' }}">
+    </p>
+    <p>
+      <label>Bio:</label><br>
+      <textarea name="bio" rows="4" cols="40">{{ user.Bio or '' }}</textarea>
+    </p>
+
+    <button type="submit">Update User</button>
+  </form>
+{% endblock %}

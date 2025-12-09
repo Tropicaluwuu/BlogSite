@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>New Post</h2>
+
+  <form method="post">
+    <p>
+      <label>Title:</label><br>
+      <input type="text" name="title" required style="width: 100%;">
+    </p>
+
+    <p>
+      <label>Content:</label><br>
+      <textarea name="content" rows="8" style="width: 100%;" required></textarea>
+    </p>
+
+    <p>
+      <label>Author:</label>
+      <select name="userid" required>
+        <option value="">-- select user --</option>
+        {% for user in users %}
+          <option value="{{ user.UserID }}">{{ user.Username }}</option>
+        {% endfor %}
+      </select>
+    </p>
+
+    <button type="submit">Publish Post</button>
+  </form>
+{% endblock %}

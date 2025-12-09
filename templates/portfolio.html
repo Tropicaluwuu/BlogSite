@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Portfolio</h2>
+  <p>Some of the projects I’ve built or worked on recently:</p>
+
+  <section>
+    <h3>Blog Site (This Project)</h3>
+    <ul>
+      <li>Flask backend with SQLAlchemy + SQLite</li>
+      <li>CRUD for Users, Posts, and Comments</li>
+      <li>Relationships between tables (Users ↔ Posts ↔ Comments)</li>
+      <li>Designed as a multi-user blog platform</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>RockBands App</h3>
+    <ul>
+      <li>Tracks bands, members, albums, and memberships</li>
+      <li>Uses many-to-many relationships via association tables</li>
+      <li>CRUD operations for bands and memberships</li>
+      <li>Built with Flask, SQLAlchemy, and templates for display pages</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Study Buddy / Task App (if you want to include it)</h3>
+    <ul>
+      <li>Simple UI for adding and viewing study tasks</li>
+      <li>Forms, templates, and persistence for tasks</li>
+      <li>Focus on usability and layout</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Security / OWASP ZAP Demo (if you want to brag a little)</h3>
+    <ul>
+      <li>Demonstrated scanning a vulnerable app using OWASP ZAP</li>
+      <li>Showed how to interpret high/medium/low risk alerts</li>
+      <li>Explored intercepting proxy concepts (man-in-the-middle)</li>
+    </ul>
+  </section>
+
+  
+{% endblock %}

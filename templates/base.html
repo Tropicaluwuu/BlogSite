@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Why Won't This Work</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+
+    <script src="{{ url_for('static', filename='scripts.js') }}" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Why Won't This Work</h1>
+      <nav>
+  <a href="{{ url_for('index') }}">Home</a> 
+  <a href="{{ url_for('list_posts') }}">All Posts</a> 
+  <a href="{{ url_for('add_post') }}">New Post</a> 
+  <a href="{{ url_for('list_users') }}">Users</a> 
+  <a href="{{ url_for('add_user') }}">Add User</a> 
+  <a href="{{ url_for('portfolio') }}">Portfolio</a>
+</nav>
+
+    </header>
+
+    <main>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, msg in messages %}
+            <p class="{{ category }}">{{ msg }}</p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+
+      {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>

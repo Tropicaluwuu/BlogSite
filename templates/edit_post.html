@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Edit Post</h2>
+
+  <form method="post">
+    <p>
+      <label>Title:</label><br>
+      <input type="text" name="title" value="{{ post.Title }}" required style="width: 100%;">
+    </p>
+
+    <p>
+      <label>Content:</label><br>
+      <textarea name="content" rows="8" style="width: 100%;" required>{{ post.Content }}</textarea>
+    </p>
+
+    <p>
+      <label>Author:</label>
+      <select name="userid" required>
+        {% for user in users %}
+          <option value="{{ user.UserID }}"
+                  {% if user.UserID == post.UserID %}selected{% endif %}>
+            {{ user.Username }}
+          </option>
+        {% endfor %}
+      </select>
+    </p>
+
+    <button type="submit">Update Post</button>
+  </form>
+{% endblock %}
